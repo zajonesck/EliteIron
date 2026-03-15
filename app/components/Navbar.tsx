@@ -82,7 +82,7 @@ export default function Navbar() {
           open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="bg-black/98 border-t border-white/5 px-6 py-4 flex flex-col gap-4">
+        <div className="bg-black border-t border-white/5 px-6 py-4 flex flex-col gap-4">
           {links.map(({ href, label }) => (
             <Link
               key={href}
