@@ -100,9 +100,8 @@ export default function AboutPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <p className="text-[#C41E1E] text-xs font-bold tracking-[0.3em] uppercase mb-4">Our Story</p>
           <h1 className="text-white font-black text-5xl md:text-7xl uppercase leading-tight max-w-3xl">
-            Where<br />
-            <span className="text-[#C41E1E]">Champions</span><br />
-            Are Built.
+            Built on Strength.<br />
+            <span className="text-[#C41E1E]">Driven by Purpose.</span>
           </h1>
           <div className="w-16 h-1 bg-[#C41E1E] mt-6" />
         </div>
