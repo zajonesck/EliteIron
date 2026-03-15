@@ -350,9 +350,9 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5">
             {testimonials.map(({ name, title, photo, quote }) => (
-              <div key={name} className="bg-zinc-950 flex hover:bg-zinc-900 transition-colors duration-200 group">
+              <div key={name} className="bg-zinc-950 flex flex-col sm:flex-row hover:bg-zinc-900 transition-colors duration-200 group">
                 {/* Photo panel */}
-                <div className="relative w-48 shrink-0 overflow-hidden">
+                <div className="relative h-56 sm:h-auto sm:w-48 shrink-0 overflow-hidden">
                   {photo ? (
                     <Image
                       src={photo}
@@ -365,7 +365,7 @@ export default function AboutPage() {
                       <span className="text-[#C41E1E] text-2xl font-black">{name[0]}</span>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-zinc-950 group-hover:to-zinc-900 transition-colors duration-200" />
+                  <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-transparent to-zinc-950 group-hover:to-zinc-900 transition-colors duration-200" />
                 </div>
                 {/* Content */}
                 <div className="flex flex-col justify-between p-6 flex-1 min-w-0">
