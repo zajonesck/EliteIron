@@ -28,6 +28,15 @@ export const metadata: Metadata = {
     "equipped powerlifting",
     "gym Suwanee",
   ],
+  openGraph: {
+    title: "Elite Iron Sports Performance | Suwanee, GA",
+    description: "Suwanee, Georgia's premier strength and powerlifting facility. Where Champions Are Built.",
+    images: [{ url: "/images/og-image.webp", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/images/og-image.webp"],
+  },
 };
 
 export default function RootLayout({
