@@ -80,7 +80,7 @@ export default function Home() {
             Suwanee, Georgia
           </div>
 
-          <h1 className="text-6xl md:text-8xl lg:text-[108px] font-black uppercase leading-[0.9] tracking-tight text-white mb-6">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[108px] font-black uppercase leading-[0.9] tracking-tight text-white mb-6">
             Where
             <br />
             <span className="text-[#C41E1E]">Champions</span>
