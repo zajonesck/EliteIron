@@ -15,6 +15,7 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://elite-iron.vercel.app"),
   title: "Elite Iron Sports Performance | Suwanee, GA",
   description:
     "Elite Iron Sports Performance — Suwanee, Georgia's premier strength and powerlifting facility. Coached by James Townsend, Powerlifting America's Head Team Equipped Coach. Where Champions Are Built.",
@@ -31,11 +32,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Elite Iron Sports Performance | Suwanee, GA",
     description: "Suwanee, Georgia's premier strength and powerlifting facility. Where Champions Are Built.",
-    images: [{ url: "/images/og-image.webp", width: 1200, height: 630 }],
+    images: [{ url: "https://elite-iron.vercel.app/images/og-image.webp", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/images/og-image.webp"],
+    images: ["https://elite-iron.vercel.app/images/og-image.webp"],
   },
 };
 
