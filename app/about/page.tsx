@@ -1,6 +1,17 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle, Award } from 'lucide-react';
+import JamesPhoto from './JamesPhoto';
+
+export const metadata: Metadata = {
+  title: 'About | Elite Iron Sports Performance',
+  description: 'Meet James Townsend and the Elite Iron team — Suwanee, GA\'s premier strength coaches. IPF-certified, world-class powerlifting and athletic development.',
+  openGraph: {
+    title: 'About Elite Iron Sports Performance',
+    description: 'Meet the coaches behind Suwanee, GA\'s premier strength and powerlifting facility.',
+  },
+};
 
 const certifications = [
   'NSCA Certified Strength & Conditioning Specialist',
@@ -269,15 +280,7 @@ export default function AboutPage() {
 
             <div className="space-y-6">
               {/* Headshot */}
-              <div className="relative overflow-hidden border border-white/10">
-                <div className="relative aspect-[4/5]">
-                  <Image src="/images/james-headshot.webp" alt="James Townsend — Head Coach, Elite Iron Sports Performance" fill className="object-cover object-top" />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                    <p className="text-white text-xs font-bold tracking-widest uppercase">James Townsend</p>
-                    <p className="text-[#C41E1E] text-[10px] tracking-wide uppercase mt-0.5">Owner / Head Coach</p>
-                  </div>
-                </div>
-              </div>
+              <JamesPhoto />
 
               {/* Career Timeline */}
               <div className="border border-white/10 bg-zinc-950 p-6">

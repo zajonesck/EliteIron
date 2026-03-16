@@ -1,6 +1,16 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ShoppingBag } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Store | Elite Iron Sports Performance',
+  description: 'Shop Elite Iron gear — hoodies, shirts, hats, and more. Represent your gym.',
+  openGraph: {
+    title: 'Elite Iron Store',
+    description: 'Shop Elite Iron Sports Performance apparel and gear.',
+  },
+};
 
 const STORE_BASE = 'https://www.eliteironsp.com/store/p';
 

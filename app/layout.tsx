@@ -40,6 +40,50 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'LocalBusiness',
+      '@id': 'https://elite-iron.vercel.app/#business',
+      name: 'Elite Iron Sports Performance',
+      description: "Suwanee, Georgia's premier strength and powerlifting facility.",
+      url: 'https://elite-iron.vercel.app',
+      telephone: '+17709045994',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '4140 Moore Rd B116',
+        addressLocality: 'Suwanee',
+        addressRegion: 'GA',
+        postalCode: '30024',
+        addressCountry: 'US',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 34.0521,
+        longitude: -84.0701,
+      },
+      sameAs: [
+        'https://www.instagram.com/eliteironsp/',
+        'https://www.facebook.com/eliteironsp/',
+      ],
+      openingHoursSpecification: [
+        { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '06:00', closes: '20:00' },
+        { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '08:00', closes: '14:00' },
+      ],
+      hasMap: 'https://maps.google.com/?q=4140+Moore+Rd+B116+Suwanee+GA+30024',
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://elite-iron.vercel.app/#james',
+      name: 'James Townsend',
+      jobTitle: 'Head Coach',
+      worksFor: { '@id': 'https://elite-iron.vercel.app/#business' },
+      description: "Powerlifting America's Head Team Equipped Coach and founder of Elite Iron Sports Performance.",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -48,6 +92,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${robotoMono.variable} antialiased bg-black text-white`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Navbar />
         {children}
         <Footer />

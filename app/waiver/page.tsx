@@ -499,7 +499,7 @@ export default function WaiverPage() {
                 {status === 'submitting' ? 'Submitting…' : 'Agree To This Document'}
               </button>
               {status === 'error' && (
-                <p className="text-red-400 text-sm text-center mt-4">Something went wrong. Please try again or contact us directly.</p>
+                <p role="alert" className="text-red-400 text-sm text-center mt-4">Something went wrong. Please try again or contact us directly.</p>
               )}
             </div>
           )}

@@ -333,7 +333,7 @@ export default function ContactPage() {
                   </div>
 
                   {error && (
-                    <p className="text-red-400 text-sm">Something went wrong. Please try again or email us directly.</p>
+                    <p role="alert" className="text-red-400 text-sm">Something went wrong. Please try again or email us directly.</p>
                   )}
                   <button
                     type="submit"

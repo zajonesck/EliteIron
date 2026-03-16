@@ -1,6 +1,16 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle, Users, Dumbbell, Target, Clock, Zap, Globe } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Coaching & Services | Elite Iron Sports Performance',
+  description: 'Strength training, powerlifting coaching, small group training, and online programming in Suwanee, GA. Expert coaching for all levels.',
+  openGraph: {
+    title: 'Coaching & Services | Elite Iron Sports Performance',
+    description: 'Expert strength and powerlifting coaching in Suwanee, GA. Small group training, S&C programming, and online coaching available.',
+  },
+};
 
 const services = [
   {
@@ -93,7 +103,7 @@ export default function CoachingPage() {
                 <div className="w-12 h-12 bg-[#C41E1E]/10 border border-[#C41E1E]/20 flex items-center justify-center mb-5 group-hover:bg-[#C41E1E]/20 transition-colors">
                   <Icon size={22} className="text-[#C41E1E]" />
                 </div>
-                <h3 className="text-white font-black text-xl uppercase tracking-wide mb-3">{title}</h3>
+                <h2 className="text-white font-black text-xl uppercase tracking-wide mb-3">{title}</h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">{desc}</p>
                 <ul className="space-y-2">
                   {features.map((f) => (
