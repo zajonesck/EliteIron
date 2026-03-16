@@ -146,7 +146,7 @@ export default function ContactPage() {
                 <div className="text-white font-bold text-xs tracking-[0.2em] uppercase mb-4">Follow Us</div>
                 <div className="flex gap-3">
                   <a
-                    href="https://facebook.com"
+                    href="https://www.facebook.com/eliteironsp/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 border border-white/10 hover:border-[#C41E1E] bg-black hover:bg-[#C41E1E]/10 text-gray-400 hover:text-white px-4 py-2.5 text-sm font-medium transition-all duration-200"
