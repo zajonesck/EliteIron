@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook, ArrowRight } from 'lucide-react';
+import BarbellSpinner from '../components/BarbellSpinner';
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -31,6 +32,11 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (submitted) successRef.current?.focus();
+  }, [submitted]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -136,7 +142,7 @@ export default function ContactPage() {
                   <div>
                     <div className="text-white font-semibold text-sm mb-1">Gym Access</div>
                     <div className="text-gray-400 text-sm">24/7 Keypad Access</div>
-                    <div className="text-gray-600 text-xs mt-0.5">Train on your schedule</div>
+                    <div className="text-gray-500 text-xs mt-0.5">Train on your schedule</div>
                   </div>
                 </div>
               </div>
@@ -190,7 +196,7 @@ export default function ContactPage() {
             {/* Form */}
             <div className="lg:col-span-3">
               {submitted ? (
-                <div className="border border-[#C41E1E]/30 bg-[#C41E1E]/10 p-12 text-center h-full flex flex-col items-center justify-center">
+                <div ref={successRef} tabIndex={-1} role="status" className="border border-[#C41E1E]/30 bg-[#C41E1E]/10 p-12 text-center h-full flex flex-col items-center justify-center outline-none">
                   <div className="w-16 h-16 bg-[#C41E1E] flex items-center justify-center mx-auto mb-6">
                     <ArrowRight size={28} className="text-white" />
                   </div>
@@ -212,7 +218,7 @@ export default function ContactPage() {
                         required
                         value={form.firstName}
                         onChange={handleChange}
-                        className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-600 px-4 py-3 text-sm outline-none transition-colors"
+                        className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-400 px-4 py-3 text-sm outline-none transition-colors"
                         placeholder="First"
                       />
                     </div>
@@ -226,7 +232,7 @@ export default function ContactPage() {
                         required
                         value={form.lastName}
                         onChange={handleChange}
-                        className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-600 px-4 py-3 text-sm outline-none transition-colors"
+                        className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-400 px-4 py-3 text-sm outline-none transition-colors"
                         placeholder="Last"
                       />
                     </div>
@@ -242,7 +248,7 @@ export default function ContactPage() {
                       required
                       value={form.email}
                       onChange={handleChange}
-                      className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-600 px-4 py-3 text-sm outline-none transition-colors"
+                      className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-400 px-4 py-3 text-sm outline-none transition-colors"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -257,7 +263,7 @@ export default function ContactPage() {
                       required
                       value={form.phone}
                       onChange={handleChange}
-                      className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-600 px-4 py-3 text-sm outline-none transition-colors"
+                      className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-400 px-4 py-3 text-sm outline-none transition-colors"
                       placeholder="(000) 000-0000"
                     />
                   </div>
@@ -327,7 +333,7 @@ export default function ContactPage() {
                       rows={5}
                       value={form.message}
                       onChange={handleChange}
-                      className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-600 px-4 py-3 text-sm outline-none transition-colors resize-none"
+                      className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-400 px-4 py-3 text-sm outline-none transition-colors resize-none"
                       placeholder="Ask us about gym memberships, programming, fitness training, etc."
                     />
                   </div>
@@ -340,8 +346,7 @@ export default function ContactPage() {
                     disabled={loading}
                     className="w-full bg-[#C41E1E] hover:bg-[#E02020] disabled:opacity-50 disabled:cursor-not-allowed text-white font-black text-sm tracking-[0.2em] uppercase py-4 transition-all duration-200 hover:shadow-xl hover:shadow-red-900/40 flex items-center justify-center gap-3 group"
                   >
-                    {loading ? 'Sending…' : 'Submit'}
-                    {!loading && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
+                    {loading ? <BarbellSpinner /> : <>Submit <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></>}
                   </button>
                 </form>
               )}

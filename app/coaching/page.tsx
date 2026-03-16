@@ -177,7 +177,7 @@ export default function CoachingPage() {
               <div key={name} className="bg-ei-navy p-5 hover:bg-black transition-colors group">
                 <div className="w-6 h-0.5 bg-[#C41E1E] mb-3 group-hover:w-10 transition-all duration-300" />
                 <div className="text-white text-sm font-bold mb-1">{name}</div>
-                <div className="text-gray-600 text-xs">{desc}</div>
+                <div className="text-gray-500 text-xs">{desc}</div>
               </div>
             ))}
           </div>

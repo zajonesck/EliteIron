@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { CheckSquare, Square, AlertTriangle, CheckCircle } from 'lucide-react';
+import BarbellSpinner from '../components/BarbellSpinner';
 
 const CLAUSES = [
   "I hereby acknowledge that the personal training for which I am registering is a strenuous activity which is beyond the capability of some people, and may cause minor, severe and/or permanent injuries or death to those people that are not in sufficient physical fitness, training and/or experience.",
@@ -46,7 +47,7 @@ const blankMinor = (): MinorInfo => ({
   dobMonth: '', dobDay: '', dobYear: '',
 });
 
-const inputCls = 'w-full bg-zinc-900 border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-[#C41E1E] transition-colors placeholder:text-gray-600';
+const inputCls = 'w-full bg-zinc-900 border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-[#C41E1E] transition-colors placeholder:text-gray-400';
 const labelCls = 'block text-gray-500 text-xs uppercase tracking-wider mb-1.5';
 const sectionHead = 'text-white font-black text-xs uppercase tracking-[0.2em] mb-4 pb-2 border-b border-white/8';
 
@@ -496,7 +497,7 @@ export default function WaiverPage() {
               )}
               <button type="submit" disabled={!canSubmit || status === 'submitting'}
                 className="w-full bg-[#C41E1E] hover:bg-[#E02020] disabled:opacity-40 disabled:cursor-not-allowed text-white font-black text-sm tracking-[0.2em] uppercase py-5 transition-all duration-200">
-                {status === 'submitting' ? 'Submitting…' : 'Agree To This Document'}
+                {status === 'submitting' ? <BarbellSpinner /> : 'Agree To This Document'}
               </button>
               {status === 'error' && (
                 <p role="alert" className="text-red-400 text-sm text-center mt-4">Something went wrong. Please try again or contact us directly.</p>

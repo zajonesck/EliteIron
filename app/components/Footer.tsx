@@ -55,6 +55,7 @@ export default function Footer() {
                 { href: '/store', label: 'Store' },
                 { href: '/contact', label: 'Contact' },
                 { href: '/waiver', label: 'Sign Waiver' },
+                { href: '/privacy', label: 'Privacy Policy' },
               ].map(({ href, label }) => (
                 <li key={href}>
                   <Link href={href} className="text-gray-500 hover:text-[#C41E1E] text-sm transition-colors duration-200">
@@ -114,10 +115,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-600 text-xs">
+          <p className="text-gray-500 text-xs">
             © {new Date().getFullYear()} Elite Iron Sports Performance. All rights reserved.
           </p>
-          <p className="text-gray-700 text-xs">
+          <p className="text-gray-500 text-xs">
             Coach James Townsend · Powerlifting America Head Team Equipped Coach
           </p>
         </div>

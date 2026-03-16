@@ -209,7 +209,7 @@ export default function StorePage() {
                     <h3 className="text-white font-black text-base uppercase tracking-wide">{product.name}</h3>
                     <div className="text-[#C41E1E] font-black text-lg shrink-0">{product.price}</div>
                   </div>
-                  <div className="text-gray-600 text-xs uppercase tracking-wider mb-3">{product.category}</div>
+                  <div className="text-gray-500 text-xs uppercase tracking-wider mb-3">{product.category}</div>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">{product.description}</p>
 
                   <Link
