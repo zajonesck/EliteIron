@@ -12,6 +12,22 @@ export default function ContactPage() {
     heardAbout: '',
     message: '',
   });
+  const [services, setServices] = useState<string[]>([]);
+
+  const SERVICE_OPTIONS = [
+    'Gym Membership',
+    'Day Pass',
+    'Small Group Training',
+    'Remote Coaching & Programming',
+    'Powerlifting Meet Prep',
+    'Youth Athlete Development',
+  ];
+
+  const handleServiceToggle = (service: string) => {
+    setServices((prev) =>
+      prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service]
+    );
+  };
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -28,7 +44,7 @@ export default function ContactPage() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, services }),
       });
       const data = await res.json();
       if (data.ok) {
@@ -139,7 +155,7 @@ export default function ContactPage() {
                     Facebook
                   </a>
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/eliteironsp/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 border border-white/10 hover:border-[#C41E1E] bg-black hover:bg-[#C41E1E]/10 text-gray-400 hover:text-white px-4 py-2.5 text-sm font-medium transition-all duration-200"
@@ -244,6 +260,41 @@ export default function ContactPage() {
                       className="w-full bg-black border border-white/10 focus:border-[#C41E1E] text-white placeholder-gray-600 px-4 py-3 text-sm outline-none transition-colors"
                       placeholder="(000) 000-0000"
                     />
+                  </div>
+
+                  <div>
+                    <label className="block text-white text-xs font-bold tracking-[0.15em] uppercase mb-3">
+                      Services Interested In
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {SERVICE_OPTIONS.map((service) => (
+                        <label
+                          key={service}
+                          className={`flex items-center gap-3 border px-4 py-3 cursor-pointer transition-colors text-sm ${
+                            services.includes(service)
+                              ? 'border-[#C41E1E] bg-[#C41E1E]/10 text-white'
+                              : 'border-white/10 bg-black text-gray-400 hover:border-white/20'
+                          }`}
+                        >
+                          <div className={`w-4 h-4 border shrink-0 flex items-center justify-center transition-colors ${
+                            services.includes(service) ? 'border-[#C41E1E] bg-[#C41E1E]' : 'border-white/20'
+                          }`}>
+                            {services.includes(service) && (
+                              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                                <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                            )}
+                          </div>
+                          <input
+                            type="checkbox"
+                            className="sr-only"
+                            checked={services.includes(service)}
+                            onChange={() => handleServiceToggle(service)}
+                          />
+                          {service}
+                        </label>
+                      ))}
+                    </div>
                   </div>
 
                   <div>
