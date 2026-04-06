@@ -54,7 +54,7 @@ export default function StoreGrid({ products }: { products: Product[] }) {
             key={product.id}
             className="bg-zinc-950 hover:bg-black transition-colors group"
           >
-            <div className="relative aspect-square bg-black overflow-hidden border-b border-white/5">
+            <Link href={`/store/${product.id}`} className="relative aspect-square bg-black overflow-hidden border-b border-white/5 block">
               <Image
                 src={product.thumbnail_url}
                 alt={product.name}
@@ -62,7 +62,7 @@ export default function StoreGrid({ products }: { products: Product[] }) {
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-            </div>
+            </Link>
 
             <div className="p-6">
               <div className="flex items-start justify-between gap-4 mb-2">
