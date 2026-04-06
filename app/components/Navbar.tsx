@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
+import { useCart } from '@/lib/cart';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -19,6 +20,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { count, openCart } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -58,6 +60,18 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
+          <button
+            onClick={openCart}
+            className="relative text-gray-300 hover:text-white transition-colors"
+            aria-label="Open cart"
+          >
+            <ShoppingBag size={20} />
+            {count > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-[#C41E1E] text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">
+                {count}
+              </span>
+            )}
+          </button>
           <Link
             href="/contact"
             className="ml-2 bg-[#C41E1E] hover:bg-[#E02020] text-white text-sm font-bold tracking-widest uppercase px-5 py-2.5 transition-all duration-200 hover:shadow-lg hover:shadow-red-900/40"
@@ -66,14 +80,28 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-white p-2"
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile: cart + toggle */}
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            onClick={openCart}
+            className="relative text-gray-300 hover:text-white transition-colors p-1"
+            aria-label="Open cart"
+          >
+            <ShoppingBag size={20} />
+            {count > 0 && (
+              <span className="absolute -top-1 -right-1 bg-[#C41E1E] text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">
+                {count}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => setOpen(!open)}
+            className="text-white p-2"
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

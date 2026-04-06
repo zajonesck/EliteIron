@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY);
-  const { firstName, lastName, email, phone, heardAbout, message } = await req.json();
+  const { firstName, lastName, email, phone, heardAbout, message, services } = await req.json();
 
   const html = `
 <div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; background: #111; color: #eee; padding: 32px; border-radius: 8px;">
@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
       <tr><td style="color:#888; padding:4px 0;">Email</td><td style="color:#fff;"><a href="mailto:${email}" style="color:#C41E1E;">${email}</a></td></tr>
       <tr><td style="color:#888; padding:4px 0;">Phone</td><td style="color:#fff;">${phone}</td></tr>
       <tr><td style="color:#888; padding:4px 0;">Heard About Us</td><td style="color:#fff;">${heardAbout || '—'}</td></tr>
+      <tr><td style="color:#888; padding:4px 0; vertical-align:top;">Interested In</td><td style="color:#fff;">${Array.isArray(services) && services.length ? services.join(', ') : '—'}</td></tr>
     </table>
   </div>
 

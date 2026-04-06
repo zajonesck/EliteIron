@@ -3,6 +3,8 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CartDrawer from "./components/CartDrawer";
+import { Providers } from "@/lib/providers";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -96,9 +98,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Navbar />
+          <CartDrawer />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
