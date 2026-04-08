@@ -57,7 +57,7 @@ export default function Home() {
       <section className="relative min-h-screen flex flex-col items-center justify-center bg-black">
         <div className="absolute inset-0">
           <Image
-            src="/images/gym-interior.jpg"
+            src="/images/gym-hero.jpg"
             alt="Elite Iron gym interior"
             fill
             className="object-cover object-center opacity-20"
