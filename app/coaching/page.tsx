@@ -77,7 +77,7 @@ export default function CoachingPage() {
           }}
         />
         <div className="absolute inset-0">
-          <Image src="/images/deadlift-grip.jpg" alt="Deadlift" fill className="object-cover opacity-10" />
+          <Image src="/images/gym-coaching.jpg" alt="Elite Iron gym" fill className="object-cover opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black" />
         </div>
         <div className="absolute left-0 top-0 bottom-0 w-1/3 bg-gradient-to-r from-[#C41E1E]/5 to-transparent pointer-events-none" />

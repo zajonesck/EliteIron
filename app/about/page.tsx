@@ -104,7 +104,7 @@ export default function AboutPage() {
           }}
         />
         <div className="absolute inset-0">
-          <Image src="/images/team-group.jpg" alt="Elite Iron team" fill className="object-cover object-top opacity-10" />
+          <Image src="/images/gym-about.jpg" alt="Elite Iron gym" fill className="object-cover object-top opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black" />
         </div>
         <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-[#C41E1E]/5 to-transparent pointer-events-none" />
