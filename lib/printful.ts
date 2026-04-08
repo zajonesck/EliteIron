@@ -138,5 +138,13 @@ export async function createPrintfulOrder(
   }
 
   const data = await res.json();
-  return data.result;
+  const order = data.result;
+
+  // Auto-confirm so it goes straight to fulfillment
+  await fetch(`${PRINTFUL_API}/orders/${order.id}/confirm`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  return order;
 }
