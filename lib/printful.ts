@@ -141,10 +141,15 @@ export async function createPrintfulOrder(
   const order = data.result;
 
   // Auto-confirm so it goes straight to fulfillment
-  await fetch(`${PRINTFUL_API}/orders/${order.id}/confirm`, {
+  const confirmRes = await fetch(`${PRINTFUL_API}/orders/${order.id}/confirm`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${token}` },
   });
+
+  if (!confirmRes.ok) {
+    const confirmErr = await confirmRes.json().catch(() => ({}));
+    throw new Error(`Printful confirm error: ${JSON.stringify(confirmErr)}`);
+  }
 
   return order;
 }
