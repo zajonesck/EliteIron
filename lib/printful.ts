@@ -146,9 +146,9 @@ export async function createPrintfulOrder(
     headers: { Authorization: `Bearer ${token}` },
   });
 
-  if (!confirmRes.ok) {
-    const confirmErr = await confirmRes.json().catch(() => ({}));
-    throw new Error(`Printful confirm error: ${JSON.stringify(confirmErr)}`);
+  const confirmData = await confirmRes.json().catch(() => ({}));
+  if (!confirmRes.ok || confirmData.code >= 400) {
+    throw new Error(`Printful confirm error: ${JSON.stringify(confirmData)}`);
   }
 
   return order;
