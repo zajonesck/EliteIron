@@ -60,7 +60,7 @@ export default function Home() {
             src="/images/gym-hero.jpg"
             alt="Elite Iron gym interior"
             fill
-            className="object-cover object-center opacity-20"
+            className="object-cover object-center opacity-40"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
