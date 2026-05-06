@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await resend.emails.send({
-      from: 'Elite Iron <onboarding@resend.dev>',
+      from: 'Elite Iron <noreply@eliteironsp.com>',
       to: 'townsendtrainingsystems@gmail.com',
       replyTo: email,
       subject: `New Message — ${firstName} ${lastName}`,
