@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ShoppingBag } from 'lucide-react';
 import type { PrintfulSyncProduct } from '@/lib/printful';
+import { getProductImageOverride } from '@/lib/productImageOverrides';
 
 type Product = PrintfulSyncProduct & { price: string };
 
@@ -56,7 +57,7 @@ export default function StoreGrid({ products }: { products: Product[] }) {
           >
             <Link href={`/store/${product.id}`} className="relative aspect-square bg-black overflow-hidden border-b border-white/5 block">
               <Image
-                src={product.thumbnail_url}
+                src={getProductImageOverride(product.name) ?? product.thumbnail_url}
                 alt={product.name}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"

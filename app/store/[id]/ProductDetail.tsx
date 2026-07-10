@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ShoppingBag, Check } from 'lucide-react';
 import type { PrintfulProductDetailFull } from '@/lib/printful';
+import { getProductImageOverride } from '@/lib/productImageOverrides';
 import { useCart } from '@/lib/cart';
 
 interface Props {
@@ -62,12 +63,14 @@ export default function ProductDetail({ product }: Props) {
 
   // Preview image: use selected variant's preview file, or fall back to product thumbnail
   const previewImage = useMemo(() => {
+    const override = getProductImageOverride(sync_product.name);
+    if (override) return override;
     if (selectedVariant?.files) {
       const preview = selectedVariant.files.find(f => f.type === 'preview');
       if (preview?.preview_url) return preview.preview_url;
     }
     return sync_product.thumbnail_url;
-  }, [selectedVariant, sync_product.thumbnail_url]);
+  }, [selectedVariant, sync_product]);
 
   function handleAddToCart() {
     if (!selectedVariant) return;
