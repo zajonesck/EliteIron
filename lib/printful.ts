@@ -79,7 +79,9 @@ export async function getStoreProducts(): Promise<
   }
 
   const listData = await listRes.json();
-  const products: PrintfulSyncProduct[] = listData.result ?? [];
+  const products: PrintfulSyncProduct[] = (listData.result ?? []).filter(
+    (p: PrintfulSyncProduct) => !p.is_ignored
+  );
 
   // Fetch variants for each product in parallel to get pricing
   const detailed = await Promise.all(
