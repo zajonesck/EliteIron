@@ -37,9 +37,8 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-full max-w-md bg-zinc-900 z-50 flex flex-col shadow-2xl transition-transform duration-300 ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className="fixed top-0 right-0 h-full w-full max-w-md bg-zinc-900 z-50 flex flex-col shadow-2xl transition-transform duration-300"
+        style={{ transform: isOpen ? 'none' : 'translateX(100%)' }}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
