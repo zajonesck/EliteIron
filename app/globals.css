@@ -28,6 +28,17 @@ body {
   border-radius: 3px;
 }
 
+/* Allow PayPal checkout overlay to scroll even when body overflow is locked */
+[id*="paypal-overlay"],
+[id*="paypal-checkout"],
+[class*="paypal-checkout"],
+[class*="paypal-overlay"],
+.paypal-checkout-sandbox {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+}
+
 /* Selection */
 ::selection {
   background: #C41E1E;
