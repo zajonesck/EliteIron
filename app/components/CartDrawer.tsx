@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
@@ -12,11 +12,6 @@ export default function CartDrawer() {
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderError, setOrderError] = useState('');
 
-  // Prevent body scroll when open
-  useEffect(() => {
-    document.documentElement.style.overflow = isOpen ? 'hidden' : '';
-    return () => { document.documentElement.style.overflow = ''; };
-  }, [isOpen]);
 
   function handleClose() {
     closeCart();
