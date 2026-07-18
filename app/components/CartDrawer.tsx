@@ -14,8 +14,8 @@ export default function CartDrawer() {
 
   // Prevent body scroll when open
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    document.documentElement.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.documentElement.style.overflow = ''; };
   }, [isOpen]);
 
   function handleClose() {
