@@ -118,6 +118,91 @@ export async function getProductById(id: string | number): Promise<PrintfulProdu
   return data.result;
 }
 
+export interface ShippingAddress {
+  name: string;
+  address1: string;
+  city: string;
+  state_code: string;
+  country_code: string;
+  zip: string;
+}
+
+export interface PrintfulRates {
+  shipping: number;
+  tax: number;
+  shippingLabel: string;
+}
+
+export async function getPrintfulRates(
+  items: Array<{ variantId: number; quantity: number; price: number }>,
+  address: ShippingAddress
+): Promise<PrintfulRates> {
+  const token = process.env.PRINTFUL_API_TOKEN;
+  if (!token) throw new Error('PRINTFUL_API_TOKEN is not set');
+
+  const recipient = {
+    address1: address.address1,
+    city: address.city,
+    state_code: address.state_code,
+    country_code: address.country_code,
+    zip: address.zip,
+  };
+
+  const shippingRes = await fetch(`${PRINTFUL_API}/shipping/rates`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      recipient,
+      items: items.map(i => ({ sync_variant_id: i.variantId, quantity: i.quantity })),
+      currency: 'USD',
+    }),
+  });
+
+  if (!shippingRes.ok) {
+    const err = await shippingRes.json().catch(() => ({}));
+    throw new Error(`Printful shipping error: ${JSON.stringify(err)}`);
+  }
+
+  const shippingData = await shippingRes.json();
+  const rates: Array<{ id: string; name: string; rate: string }> = shippingData.result ?? [];
+  if (!rates.length) throw new Error('No shipping rates available for this address');
+
+  const cheapest = rates.reduce(
+    (min, r) => parseFloat(r.rate) < parseFloat(min.rate) ? r : min,
+    rates[0]
+  );
+  const shippingCost = parseFloat(cheapest.rate);
+
+  let taxAmount = 0;
+  const taxRes = await fetch(`${PRINTFUL_API}/tax/rates`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ recipient }),
+  });
+
+  if (taxRes.ok) {
+    const taxData = await taxRes.json();
+    const taxResult = taxData.result;
+    if (taxResult?.required && taxResult?.rate) {
+      const itemSubtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+      taxAmount = itemSubtotal * taxResult.rate;
+      if (taxResult.shipping_taxable) taxAmount += shippingCost * taxResult.rate;
+    }
+  }
+
+  return {
+    shipping: parseFloat(shippingCost.toFixed(2)),
+    tax: parseFloat(taxAmount.toFixed(2)),
+    shippingLabel: cheapest.name,
+  };
+}
+
 export async function createPrintfulOrder(
   recipient: PrintfulRecipient,
   items: PrintfulOrderItem[]
