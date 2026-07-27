@@ -170,11 +170,14 @@ export async function getPrintfulRates(
   const rates: Array<{ id: string; name: string; rate: string }> = shippingData.result ?? [];
   if (!rates.length) throw new Error('No shipping rates available for this address');
 
-  const cheapest = rates.reduce(
-    (min, r) => parseFloat(r.rate) < parseFloat(min.rate) ? r : min,
-    rates[0]
-  );
-  const shippingCost = parseFloat(cheapest.rate);
+  // Avoid the cheapest rate: on split-shipment orders (items from multiple Printful
+  // warehouses) the quoted ECONOMY rate can fall below what Printful actually bills,
+  // leaving us short. Prefer STANDARD — Printful's own default fulfillment tier —
+  // and fall back to the median rate when STANDARD isn't offered.
+  const sorted = [...rates].sort((a, b) => parseFloat(a.rate) - parseFloat(b.rate));
+  const standard = sorted.find(r => r.id === 'STANDARD');
+  const selected = standard ?? sorted[Math.floor(sorted.length / 2)];
+  const shippingCost = parseFloat(selected.rate);
 
   let taxAmount = 0;
   const taxRes = await fetch(`${PRINTFUL_API}/tax/rates`, {
@@ -199,7 +202,7 @@ export async function getPrintfulRates(
   return {
     shipping: parseFloat(shippingCost.toFixed(2)),
     tax: parseFloat(taxAmount.toFixed(2)),
-    shippingLabel: cheapest.name,
+    shippingLabel: selected.name,
   };
 }
 
