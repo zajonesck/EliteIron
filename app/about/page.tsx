@@ -32,6 +32,7 @@ const career = [
   { years: '2018–Present', role: 'Owner & Head Coach', org: 'Elite Iron Sports Performance' },
   { years: '2022–Present', role: 'Head Coach — National Open Team', org: 'Powerlifting America' },
   { years: '2025–Present', role: 'Coaching Commission Chairman', org: 'Powerlifting America' },
+  { years: '2025–Present', role: 'National Team Program Director', org: 'Powerlifting America' },
 ];
 
 const testimonials = [
