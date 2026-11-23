@@ -294,7 +294,11 @@ export default function AboutPage() {
                         <div className="relative pl-5">
                           <div className="absolute left-0 top-1.5 w-2 h-2 bg-[#C41E1E] rounded-full group-hover:scale-125 transition-transform" />
                           <div className="text-white text-xs font-semibold leading-tight">{role}</div>
-                          <div className="text-gray-500 text-[10px] mt-0.5">{org}</div>
+                          <div className="text-gray-500 text-[10px] mt-0.5">
+                            {org === 'Powerlifting America' ? (
+                              <a href="https://powerlifting-america.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#C41E1E] transition-colors">{org}</a>
+                            ) : org}
+                          </div>
                         </div>
                       </div>
                     ))}
