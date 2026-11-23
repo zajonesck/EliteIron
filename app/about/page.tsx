@@ -31,7 +31,6 @@ const career = [
   { years: '2017, 2022, 2025', role: 'Head Coach — Team USA', org: 'World Games (IWGA) Powerlifting' },
   { years: '2018–Present', role: 'Owner & Head Coach', org: 'Elite Iron Sports Performance' },
   { years: '2022–Present', role: 'Head Coach — National Open Team', org: 'Powerlifting America' },
-  { years: '2025–Present', role: 'Coaching Commission Chairman', org: 'Powerlifting America' },
   { years: '2025–Present', role: 'National Team Program Director', org: 'Powerlifting America' },
 ];
 
