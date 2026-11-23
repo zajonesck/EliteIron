@@ -27,7 +27,7 @@ const career = [
   { years: '2011', role: 'Head Football S&C Coach', org: 'Marshall University' },
   { years: '2012–2018', role: 'Co-Owner', org: 'GATA Running & GATA Combine Training' },
   { years: '2012–2018', role: 'Owner', org: 'GATA Barbell Club' },
-  { years: '2016–2022', role: 'Head Coach — National Open Team', org: 'USAPL' },
+  { years: '2016–2022', role: 'Head Coach — National Open Team', org: 'United States IPF Affiliate' },
   { years: '2017, 2022, 2025', role: 'Head Coach — Team USA', org: 'World Games (IWGA) Powerlifting' },
   { years: '2018–Present', role: 'Owner & Head Coach', org: 'Elite Iron Sports Performance' },
   { years: '2022–Present', role: 'Head Coach — National Open Team', org: 'Powerlifting America' },
